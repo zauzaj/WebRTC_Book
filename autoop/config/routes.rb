@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   authenticate :user do
     root "dashboard#index", as: :authenticated_root
     get "dashboard", to: "dashboard#index", as: :dashboard
+
+    scope :auth do
+      get  "quickbooks/connect",    to: "quickbooks_auth#connect",    as: :quickbooks_connect
+      get  "quickbooks/callback",   to: "quickbooks_auth#callback",   as: :quickbooks_callback
+      delete "quickbooks/disconnect", to: "quickbooks_auth#disconnect", as: :quickbooks_disconnect
+    end
   end
 
   root "devise/sessions#new"

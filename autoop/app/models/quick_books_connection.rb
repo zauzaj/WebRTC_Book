@@ -1,4 +1,6 @@
 class QuickBooksConnection < ApplicationRecord
+  include QuickbooksTokenRefreshable
+
   belongs_to :user
 
   validates :realm_id, presence: true
