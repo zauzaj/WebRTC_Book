@@ -143,12 +143,19 @@ class InvoiceExtractorService
 
   def create_line_items(items)
     @invoice.invoice_line_items.destroy_all
+    classifier = GlCodeClassifierService.new(@user)
+
     items.each do |item|
+      suggestions = classifier.suggest(item["description"].to_s)
+      best = suggestions.first
+
       @invoice.invoice_line_items.create!(
         description: item["description"],
         quantity: item["quantity"],
         unit_price: item["unit_price"],
-        amount: item["amount"]
+        amount: item["amount"],
+        gl_code: best&.dig(:gl_code),
+        confidence_score: best&.dig(:score)
       )
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_29_074128) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_29_080000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_29_074128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.vector "embedding", limit: 1536
+    t.index ["embedding"], name: "gl_codes_embedding_idx", opclass: :vector_cosine_ops, using: :ivfflat
     t.index ["user_id"], name: "index_gl_codes_on_user_id"
   end
 
@@ -93,6 +94,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_29_074128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.vector "embedding", limit: 1536
+    t.index ["embedding"], name: "invoices_embedding_idx", opclass: :vector_cosine_ops, using: :ivfflat
     t.index ["user_id"], name: "index_invoices_on_user_id"
     t.index ["vendor_id"], name: "index_invoices_on_vendor_id"
   end
