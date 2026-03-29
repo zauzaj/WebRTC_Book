@@ -1,0 +1,40 @@
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h1 class="text-3xl font-bold text-indigo-600 text-center">AutoAP</h1>
+      <h2 class="mt-4 text-2xl font-semibold text-gray-900 text-center">Sign in to your account</h2>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f| %>
+      <div class="space-y-4">
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              class: "mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500",
+              placeholder: "you@example.com" %>
+        </div>
+
+        <div>
+          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password, autocomplete: "current-password",
+              class: "mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="flex items-center">
+            <%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+            <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-700" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div>
+        <%= f.submit "Sign in", class: "w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <div class="text-center text-sm text-gray-600">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

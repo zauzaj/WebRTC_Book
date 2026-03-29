@@ -1,0 +1,44 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
+    <p class="mt-1 text-sm text-gray-600">Welcome back, <%= current_user.company_name %></p>
+  </div>
+
+  <% unless @quickbooks_connected %>
+    <div class="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-center justify-between">
+      <div>
+        <p class="text-sm font-medium text-amber-800">Connect QuickBooks to get started</p>
+        <p class="text-xs text-amber-700 mt-0.5">Sync your vendors and GL codes to enable invoice automation</p>
+      </div>
+      <a href="#" class="text-sm font-medium text-amber-800 underline">Connect now →</a>
+    </div>
+  <% end %>
+
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
+      <div class="p-5">
+        <p class="text-sm font-medium text-gray-500">Total Invoices</p>
+        <p class="mt-1 text-3xl font-semibold text-gray-900"><%= @invoices_count %></p>
+      </div>
+    </div>
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
+      <div class="p-5">
+        <p class="text-sm font-medium text-gray-500">Pending Review</p>
+        <p class="mt-1 text-3xl font-semibold text-amber-600"><%= @pending_invoices %></p>
+      </div>
+    </div>
+    <div class="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
+      <div class="p-5">
+        <p class="text-sm font-medium text-gray-500">Vendors Synced</p>
+        <p class="mt-1 text-3xl font-semibold text-gray-900"><%= @vendors_count %></p>
+      </div>
+    </div>
+  </div>
+
+  <% if @invoices_count == 0 %>
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200 p-12 text-center">
+      <p class="text-gray-500 text-sm">No invoices yet.</p>
+      <p class="text-gray-400 text-xs mt-1">Forward invoices to your AutoAP email address to get started.</p>
+    </div>
+  <% end %>
+</div>
