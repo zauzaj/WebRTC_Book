@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get  "quickbooks/connect",    to: "quickbooks_auth#connect",    as: :quickbooks_connect
       get  "quickbooks/callback",   to: "quickbooks_auth#callback",   as: :quickbooks_callback
       delete "quickbooks/disconnect", to: "quickbooks_auth#disconnect", as: :quickbooks_disconnect
+      post   "quickbooks/sync",       to: "quickbooks_sync#create",    as: :quickbooks_sync
     end
   end
 

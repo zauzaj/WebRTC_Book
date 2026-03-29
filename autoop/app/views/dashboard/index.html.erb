@@ -10,7 +10,10 @@
         <p class="text-sm font-medium text-green-800">QuickBooks connected</p>
         <p class="text-xs text-green-700 mt-0.5">Your vendors and GL codes are synced</p>
       </div>
-      <%= link_to "Disconnect", quickbooks_disconnect_path, data: { turbo_method: :delete, turbo_confirm: "Disconnect QuickBooks?" }, class: "text-sm text-green-700 underline" %>
+      <div class="flex items-center gap-4">
+        <%= button_to "Sync Now", quickbooks_sync_path, method: :post, class: "text-sm font-medium text-white bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-md" %>
+        <%= link_to "Disconnect", quickbooks_disconnect_path, data: { turbo_method: :delete, turbo_confirm: "Disconnect QuickBooks?" }, class: "text-sm text-green-700 underline" %>
+      </div>
     </div>
   <% else %>
     <div class="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-center justify-between">
